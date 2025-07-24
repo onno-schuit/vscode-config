@@ -212,7 +212,7 @@ You don’t need to commit PHPCS itself—just install it quickly on your laptop
 
 ```bash
 sudo apt update
-sudo apt install -y php-cli php-xml php-mbstring php-zip php-curl composer
+sudo apt install -y php-cli php-xml php-mbstring php-zip php-curl php-intl composer
 ```
 
 ### 2. Configure Composer globally
@@ -225,6 +225,19 @@ composer global config allow-plugins.dealerdirect/phpcodesniffer-composer-instal
 composer global config minimum-stability dev
 composer global config prefer-stable true
 ```
+
+### 2b. If the distro Composer crashes (e.g. "Normalizer not found") or you prefer the official installer
+
+```bash
+mkdir -p ~/.local/bin
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php --install-dir=$HOME/.local/bin --filename=composer
+rm composer-setup.php
+# Ensure it's on PATH for this shell and future sessions
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+> After installing Composer this way, you can remove the distro package (`sudo apt remove composer`) to avoid conflicts.
 
 ### 3. Install PHPCS + Moodle rules (one command)
 
