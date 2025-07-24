@@ -1,0 +1,89 @@
+{
+    "settings.cycle.warnOnWorkspaceSettingsCollisions": true,
+    "settings.cycle.logLevel": "log",
+    "window.zoomLevel": 2,
+    "workbench.colorCustomizations": {
+        "editorUnnecessaryCode.border": "red",
+    },
+    "outline.showVariables": false,
+    "vim.leader": ",",
+    "vim.vimrc.enable": false,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>", "c"],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
+        },
+        {
+            "before": ["ctrl+h"],
+            "commands": [
+                "workbench.view.explorer"
+            ]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "commands": [
+                "editor.action.toggleRenderWhitespace"
+            ]
+        }
+    ],
+    "vim.showMarksInGutter": true,
+    "editor.renderWhitespace": "all",
+    "settings.cycle": [
+        {
+            "id": "colorTheme", // must be unique
+            "overrideWorkspaceSettings": false,
+            "values": [
+                {
+                    "workbench.colorTheme": "Default Dark+"
+                },
+                {
+                    "workbench.colorTheme": "Default Light+"
+                }
+            ]
+        },
+        {
+            "id": "renderIndentGuides", // must be unique
+            "overrideWorkspaceSettings": true,
+            "values": [
+                {
+                    "editor.renderIndentGuides": false
+                },
+                {
+                    "editor.renderIndentGuides": true
+                }
+            ]
+        }
+    ],
+    "editor.guides.indentation": false,
+    "editor.minimap.enabled": true,
+    "workbench.statusBar.visible": true,
+    "sync-rsync.notification": true,
+    "sync-rsync.onSaveIndividual": true,
+    "git.openRepositoryInParentFolders": "always",
+    	// Controls whether opened editors show as preview editors. Preview editors do not stay open, are reused until explicitly set to be kept open (via double-click or editing), and show file names in italics.
+    "workbench.editor.enablePreview": false,
+    "workbench.colorTheme": "Default Light+",
+    "genieai.openai.model": "gpt-4",
+    "vim.normalModeKeyBindingsNonRecursive": [
+    {
+        "before": ["S"],
+        "after": ["v", "i", "w", "p"]
+    }
+    ],
+    "php-cs-fixer.executablePath": "~/.config/composer/vendor/bin/php-cs-fixer",
+    "php-cs-fixer.executablePathWindows": "",   //eg: php-cs-fixer.bat
+    "php-cs-fixer.onsave": false,
+    "php-cs-fixer.rules": "@PSR12",
+    "php-cs-fixer.config": ".php-cs-fixer.php;.php-cs-fixer.dist.php;.php_cs;.php_cs.dist",
+    "php-cs-fixer.allowRisky": false,
+    "php-cs-fixer.pathMode": "override",
+    "php-cs-fixer.ignorePHPVersion": false,
+    "php-cs-fixer.exclude": [],
+    "php-cs-fixer.autoFixByBracket": false,
+    "php-cs-fixer.autoFixBySemicolon": false,
+    "php-cs-fixer.formatHtml": false,
+    "php-cs-fixer.documentFormattingProvider": true,
+    "editor.wordWrap": "on"
+}

@@ -1,0 +1,7 @@
+# VS Code user data that shouldn't be versioned
+globalStorage/
+workspaceStorage/
+History/
+logs/
+sync/
+**/token*

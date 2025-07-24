@@ -1,0 +1,83 @@
+// Place your key bindings in this file to override the defaults
+[
+    // Move around between windows like in vim
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.navigateDown"
+    },
+    // Show help / doc for item under cursor
+    {
+        "key": "ctrl+shift+k",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "alt+shift+k",
+        "command": "editor.action.showDefinitionPreviewHover",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "settings.cycle.colorTheme",
+    },
+    /*
+    // renderIndentGuides does not seem to work with cycler extension
+    {
+        "key": "ctrl+shift+l",
+        "command": "settings.cycle.renderIndentGuides",
+    }
+    */
+    {
+        "key": "F4",
+        "command": "toggle",
+        "when": "editorTextFocus",
+        "args": {
+            "id": "zen",
+            "value": [
+                {
+                    "editor.minimap.enabled": true,
+                    "workbench.statusBar.visible": true
+                },
+                {
+                    "editor.minimap.enabled": false,
+                    "workbench.statusBar.visible": false
+                }
+            ]
+        }
+    },
+    {
+        "key": "ctrl+f8",
+        "command": "go-to-next-error.next.warning"
+    },
+    /* 
+    // renderIndentGuides does not seem to work with toggle extension
+    {
+        "key": "ctrl+shift+l",
+        "command": "toggle",
+        "when": "editorTextFocus",
+        "args": {
+            "id": "renderIndentGuides",
+            "value": [
+                {
+                    "editor.renderIndentGuides": false
+                },
+                {
+                    "editor.renderIndentGuides": true
+                }
+            ]
+        }
+    }
+    */
+]
