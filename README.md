@@ -280,7 +280,7 @@ Make sure you have the extension **wongjn.php-sniffer** installed, then add/upda
 },
 
 // Wongjn settings
-"phpSniffer.executablesFolder": "/home/onno/.config/composer/vendor/bin", // folder, not the file
+"phpSniffer.executablesFolder": "/home/onno/.config/Code/User/phpcs-bin", // script that suppresses the output of phpcs
 "phpSniffer.autoDetect": false,
 "phpSniffer.standard": "Moodle" // or a path to a local phpcs.xml
 ```

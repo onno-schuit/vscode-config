@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+REAL="/home/onno/.config/composer/vendor/bin/phpcbf"
+exec "$REAL" -q "$@" 2>/dev/null
