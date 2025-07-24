@@ -82,6 +82,7 @@
     //"phpSniffer.run": "onSave",                      // or "onType" or "never"
     "phpSniffer.executablesFolder": "/home/onno/.config/composer/vendor/bin",
     "phpSniffer.autoDetect": false,                  // set true ONLY if you want it to look in ./vendor/bin
+    // We don't want the deprecated warnings, so we suppress these in our own rule set:
     "phpSniffer.standard": "Moodle",                 // or an absolute path to your ruleset
     // optional: "phpSniffer.snippetExcludeSniffs": ["Some.Sniff.ToExclude"]
 }
