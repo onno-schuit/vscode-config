@@ -79,7 +79,7 @@
     //"editor.formatOnSave": true
     },
     // Wongjn settings
-    "phpSniffer.run": "onSave",                      // or "onType" or "never"
+    //"phpSniffer.run": "onSave",                      // or "onType" or "never"
     "phpSniffer.executablesFolder": "/home/onno/.config/composer/vendor/bin",
     "phpSniffer.autoDetect": false,                  // set true ONLY if you want it to look in ./vendor/bin
     "phpSniffer.standard": "Moodle",                 // or an absolute path to your ruleset
