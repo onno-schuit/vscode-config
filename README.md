@@ -10,6 +10,14 @@ This repository stores **only the human‑readable parts** of your Visual Studio
 
 ---
 
+## Repo Location
+
+Clone (or initialize) this Git repo **directly inside** `~/.config/Code/User`.
+
+That directory is where VS Code stores your user-level settings on Linux, so having the repo live there means you commit the files *in place*—no copying back and forth. If you want to keep the `.git` metadata elsewhere, see the *Separate Git dir* section below.
+
+---
+
 ## TL;DR
 
 * **Track:** `settings.json`, `keybindings.json`, `snippets/`, `extensions.txt`
@@ -22,7 +30,7 @@ This repository stores **only the human‑readable parts** of your Visual Studio
   git commit -m "Update VS Code config"
   git push
   ```
-* **Deploy on a new machine (e.g. your laptop) (e.g. your laptop):**
+* **Deploy on a new machine (e.g. your laptop):**
 
   ```bash
   rm -rf ~/.config/Code/User    # careful!
@@ -198,7 +206,7 @@ Happy coding! If you need this merged into a larger dotfiles bootstrap, or want 
 
 ## PHP\_CodeSniffer & Moodle Coding Style
 
-You don’t need to commit PHPCS itself—just install it quickly on your computer box). Here’s the exact sequence I ran on my laptop (and reuse on any other machine):
+You don’t need to commit PHPCS itself—just install it quickly on your laptop (or any new machine). Here’s the exact sequence I ran on my laptop (and reuse on any other machine):
 
 ### 1. Install PHP & Composer prerequisites
 
