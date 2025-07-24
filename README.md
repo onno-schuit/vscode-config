@@ -3,7 +3,7 @@
 This repository stores **only the human‑readable parts** of your Visual Studio Code setup (settings, keybindings, snippets) plus a **generated list of extensions**. That makes it easy to:
 
 * Keep VS Code config under version control
-* Recreate your setup on a new machine in minutes
+* Recreate your setup on a new machine (e.g. your laptop) in minutes
 * Track changes over time (and roll back if needed)
 
 > Repo URL: `https://github.com/onno-schuit/vscode-config` (replace with your own if you fork).
@@ -22,7 +22,7 @@ This repository stores **only the human‑readable parts** of your Visual Studio
   git commit -m "Update VS Code config"
   git push
   ```
-* **Deploy on a new machine:**
+* **Deploy on a new machine (e.g. your laptop) (e.g. your laptop):**
 
   ```bash
   rm -rf ~/.config/Code/User    # careful!
@@ -122,7 +122,7 @@ Now, every commit automatically refreshes `extensions.txt`.
 
 ---
 
-## Re-Deploy on a New Ubuntu Installation
+## Re-Deploy on a New Ubuntu Installation (e.g. your laptop)
 
 1. **Install VS Code** and ensure the `code` CLI is available.
 2. **Clone the repo into place:**
@@ -164,7 +164,7 @@ You can put that alias into your shell config (`~/.bashrc`, `~/.zshrc`, etc.).
 
 ## Troubleshooting
 
-* **Ignored folders still show up in `git status`:**
+* **Ignored folders still show up in ********************`git status`********************:**
   They might be *already tracked*. Remove them from the index and commit:
 
   ```bash
@@ -179,7 +179,7 @@ You can put that alias into your shell config (`~/.bashrc`, `~/.zshrc`, etc.).
   xargs -a extensions.txt -I{} code --install-extension {}
   ```
 
-* **`code` command not found:**
+* **`code`**\*\* command not found:\*\*
   VS Code may not have added itself to PATH. Use "Shell Command: Install 'code' command in PATH" from the Command Palette (macOS) or reinstall VS Code on Linux.
 
 ---
@@ -193,3 +193,108 @@ You can put that alias into your shell config (`~/.bashrc`, `~/.zshrc`, etc.).
 ---
 
 Happy coding! If you need this merged into a larger dotfiles bootstrap, or want Windows/macOS equivalents, add an issue or ping me.
+
+---
+
+## PHP\_CodeSniffer & Moodle Coding Style
+
+You don’t need to commit PHPCS itself—just install it quickly on your computer box). Here’s the exact sequence I ran on my laptop (and reuse on any other machine):
+
+### 1. Install PHP & Composer prerequisites
+
+```bash
+sudo apt update
+sudo apt install -y php-cli php-xml php-mbstring php-zip php-curl composer
+```
+
+### 2. Configure Composer globally
+
+```bash
+# Allow the PHPCS installer plugin
+composer global config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+
+# So dev-only deps like phpcompatibility can be installed
+composer global config minimum-stability dev
+composer global config prefer-stable true
+```
+
+### 3. Install PHPCS + Moodle rules (one command)
+
+```bash
+composer global require -W \
+  squizlabs/php_codesniffer:^3 \
+  dealerdirect/phpcodesniffer-composer-installer:^0.7.2 \
+  moodlehq/moodle-cs:^3
+```
+
+> The `-W` flag lets Composer resolve/depend on whatever versions Moodle CS needs (including dev branches).
+
+### 4. Ensure the Composer bin dir is on your PATH
+
+```bash
+# Usually this is the path used by Composer:
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+# Add that line to ~/.bashrc or ~/.zshrc for permanence, then reload your shell
+```
+
+### 5. Verify PHPCS sees Moodle
+
+```bash
+~/.config/composer/vendor/bin/phpcs -i
+# Expect to see: moodle (and possibly PHPCompatibility, PHPCSUtils, etc.)
+```
+
+### 6. VS Code integration (user settings)
+
+Make sure you have the extension **wongjn.php-sniffer** installed, then add/update these keys in `settings.json`:
+
+```jsonc
+// Disable other formatters
+"php.format.enable": false,
+"php-cs-fixer.documentFormattingProvider": false,
+
+// Use PHPCS for PHP
+"[php]": {
+  "editor.defaultFormatter": "wongjn.php-sniffer"
+},
+
+// Wongjn settings
+"phpSniffer.executablesFolder": "/home/onno/.config/composer/vendor/bin", // folder, not the file
+"phpSniffer.autoDetect": false,
+"phpSniffer.standard": "Moodle" // or a path to a local phpcs.xml
+```
+
+> If you ever see missing-sniff errors (e.g., NormalizedArrays, Universal, etc.), either stick to the base `Moodle` standard or install those extra standards. For most Moodle work you only need `Moodle`.
+
+### 7. (Optional) Project-specific ruleset
+
+If you edit older Moodle branches, create a `phpcs.xml` in that project to pin PHPCompatibility’s version range:
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="Moodle 3.9 Ruleset">
+  <rule ref="Moodle"/>
+  <rule ref="PHPCompatibility">
+    <properties>
+      <property name="testVersion" value="7.0-7.4"/>
+    </properties>
+  </rule>
+  <exclude-pattern>*/vendor/*</exclude-pattern>
+  <exclude-pattern>*/node_modules/*</exclude-pattern>
+</ruleset>
+```
+
+Then in that workspace’s `.vscode/settings.json`:
+
+```jsonc
+"phpSniffer.standard": "${workspaceFolder}/phpcs.xml"
+```
+
+### 8. Troubleshooting quickies
+
+* **`spawn ENOTDIR`**: `phpSniffer.executablesFolder` must be a directory, not a file.
+* **`Referenced sniff ... does not exist`**: You’re using a ruleset that references a sniff you haven’t installed. Use base `Moodle` or install the missing standards.
+* **VS Code not picking changes**: `Ctrl+Shift+P → Developer: Reload Window`.
+* **Confirm command**: Check Developer Tools console to see what command the extension runs and execute it manually in a terminal.
+
+---
