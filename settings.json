@@ -109,5 +109,17 @@
     "phpSniffer.autoDetect": false,
 
     // Use the built-in moodle standard (lowercase!)
-    "phpSniffer.standard": "moodle"
+    "phpSniffer.standard": "moodle",
+
+    // PHPStan for every project
+// ~/.config/Code/User/settings.json
+"phpstan.enabled": true,
+"phpstan.binPath": "/home/onno/.config/composer/vendor/bin/phpstan",
+"phpstan.configFile": "/home/onno/.config/phpstan/phpstan.neon",
+"phpstan.memoryLimit": "1G"
+
+
+
+
+
 }

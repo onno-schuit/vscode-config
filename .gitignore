@@ -5,3 +5,6 @@ History/
 logs/
 sync/
 **/token*
+composer.json
+composer.lock
+vendor/
