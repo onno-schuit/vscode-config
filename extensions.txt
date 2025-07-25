@@ -11,7 +11,6 @@ ms-python.python@2025.10.1
 ms-python.vscode-pylance@2025.7.1
 ms-python.vscode-python-envs@1.0.0
 rebornix.toggle@0.0.2
-sanderronde.phpstan-vscode@4.0.6
 side-notes.side-notes@0.0.1
 tkcandrade.code-annotation@0.0.2
 usernamehw.errorlens@3.26.0
