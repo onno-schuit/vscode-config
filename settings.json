@@ -1,10 +1,25 @@
 {
+    "errorLens.enabled": true,
+    "errorLens.enabledDiagnosticLevels": ["error", "warning", "info", "hint"],
+    "errorLens.messageEnabled": true,
+    "errorLens.fontStyleItalic": true,
+    "errorLens.fontWeight": "normal",
+    "errorLens.margin": "4ch",
+    "workbench.colorCustomizations": {
+        "errorLens.errorBackground": "#e454541b",
+        "errorLens.errorForeground": "#ff6464",
+        "errorLens.warningBackground": "#ff942f1b",
+        "errorLens.warningForeground": "#fa973a",
+        "errorLens.infoBackground": "#00b7e420",
+        "errorLens.infoForeground": "#00b7e4",
+        "errorLens.hintBackground": "#17a2a220",
+        "errorLens.hintForeground": "#2faf64",
+        "editorUnnecessaryCode.border": "#FF0000",
+    },
+
     "settings.cycle.warnOnWorkspaceSettingsCollisions": true,
     "settings.cycle.logLevel": "log",
     "window.zoomLevel": 2,
-    "workbench.colorCustomizations": {
-        "editorUnnecessaryCode.border": "red",
-    },
     "outline.showVariables": false,
     "vim.leader": ",",
     "vim.vimrc.enable": false,
@@ -26,10 +41,16 @@
             "commands": [
                 "editor.action.toggleRenderWhitespace"
             ]
-        }
+        },
+        {
+            "before": ["<leader>", "e"],
+            "commands": [
+                "errorLens.toggle"
+            ]
+        }         
     ],
     "vim.showMarksInGutter": true,
-    "editor.renderWhitespace": "all",
+    "editor.renderWhitespace": "none",
     "settings.cycle": [
         {
             "id": "colorTheme", // must be unique
@@ -83,8 +104,8 @@
     "phpSniffer.run": "never",
 
     // Point to the Composer bin folder (directory, not file)
-    "phpSniffer.executablesFolder": "/home/onno/.config/Code/User/phpcs-bin",
-    //"phpSniffer.executablesFolder": "/home/onno/.config/composer/vendor/bin",
+    //"phpSniffer.executablesFolder": "/home/onno/.config/Code/User/phpcs-bin",
+    "phpSniffer.executablesFolder": "/home/onno/.config/composer/vendor/bin",
     "phpSniffer.autoDetect": false,
 
     // Use the built-in moodle standard (lowercase!)
